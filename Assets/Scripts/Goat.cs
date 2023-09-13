@@ -22,19 +22,20 @@ public class Goat : MonoBehaviour
     void MoveSequence()
     {
         // rotate towards next goat
-        Vector2 nextGoatPos;
+        Transform nextGoatTransform;
         if (numInList == handler.GoatList.Count - 1)
-            nextGoatPos = handler.GoatList[0].transform.position;
+            nextGoatTransform = handler.GoatList[0].transform;
         else
-            nextGoatPos = handler.GoatList[numInList + 1].transform.position;
+            nextGoatTransform = handler.GoatList[numInList + 1].transform;
 
-        float angle = Mathf.Atan2(nextGoatPos.y - transform.position.y, nextGoatPos.x - transform.position.x) * Mathf.Rad2Deg;
-        float difference = Mathf.DeltaAngle(transform.rotation.z, angle);
-        if (difference > 0) transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + handler.goatRotationSpeed * Time.deltaTime);
-        else transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z - handler.goatRotationSpeed * Time.deltaTime);
+        Vector2 targetDirection = nextGoatTransform.position - transform.position;
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, handler.goatRotationSpeed * Time.deltaTime);
 
         // move forward
-        transform.position += transform.right * Time.deltaTime * handler.goatSpeed;
+        transform.Translate(Vector2.right * handler.goatSpeed * Time.deltaTime);
     }
     
     void SetStartingPos()
