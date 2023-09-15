@@ -717,12 +717,16 @@ MonoBehaviour:
   sheepPrefab: {fileID: 4316325288931444855, guid: d67955c6f3ed7de49a060c97dada5608, type: 3}
   goatPrefab: {fileID: 56182951875489454, guid: 95f9c0a4319c52441acce631a7a995b8, type: 3}
   GoatList: []
-  sheepAmount: 0
-  goatAmount: 20
-  sheepSpeed: 0
-  goatSpeed: 5
-  sheepRotationSpeed: 0
-  goatRotationSpeed: 20
+  SheepList: []
+  sheepAmount: 500
+  goatAmount: 50
+  sheepSpeed: 1
+  goatSpeed: 8
+  sheepRotationSpeed: 1
+  goatRotationSpeed: 5
+  scareDuration: 1
+  scareSpeedModifier: 5
+  wolfRadius: 2.5
 --- !u!4 &995919186
 Transform:
   m_ObjectHideFlags: 0
@@ -730,6 +734,50 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995919184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1197293574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197293576}
+  - component: {fileID: 1197293575}
+  m_Layer: 0
+  m_Name: Wolf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1197293575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197293574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9dabfd94b53c94a8107205826cbed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1197293576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197293574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -890,3 +938,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 995919186}
   - {fileID: 80063203}
+  - {fileID: 1197293576}

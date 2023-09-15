@@ -18,7 +18,7 @@ public class Border : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Mover"))
+        if (collision.CompareTag("Goat") || collision.CompareTag("Sheep"))
         {
             if (teleportType == TPType.leftToRight)
                 collision.transform.position = new Vector2 (parallelBorder.position.x - 0.5f, collision.transform.position.y);
