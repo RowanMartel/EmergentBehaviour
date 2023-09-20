@@ -26,6 +26,8 @@ public class Handler : MonoBehaviour
 
     public float wolfRadius;
 
+    public float avoidRotateSpeed;
+
 
     void Start()
     {
@@ -42,5 +44,23 @@ public class Handler : MonoBehaviour
         {
             SheepList.Add(Instantiate<GameObject>(sheepPrefab));
         }
+    }
+
+    // setter methods
+    public void SetSheepSpeed(float speed)
+    {
+        sheepSpeed = speed;
+    }
+    public void SetGoatSpeed(float speed)
+    {
+        goatSpeed = speed;
+    }
+    public void SetSheepRotationSpeed(float speed)
+    {
+        sheepRotationSpeed = speed;
+    }
+    public void SetGoatRotationSpeed(float speed)
+    {
+        goatRotationSpeed = speed;
     }
 }

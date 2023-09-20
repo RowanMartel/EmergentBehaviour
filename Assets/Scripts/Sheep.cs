@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Sheep : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class Sheep : MonoBehaviour
     Vector3 TargetPos;
     bool scared;
     float scareTimer;
+    public float rotateMod;
+    public Transform leftNode;
+    public Transform rightNode;
 
     void Start()
     {
+        leftNode = transform.GetChild(0);
+        rightNode = transform.GetChild(1);
         handler = FindObjectOfType<Handler>();
 
         SetStartingPos();
@@ -31,6 +37,7 @@ public class Sheep : MonoBehaviour
             else scareTimer += Time.deltaTime;
         }
 
+        AvoidObstacle();
         MoveSequence();
     }
 
@@ -43,8 +50,8 @@ public class Sheep : MonoBehaviour
             Vector2 targetDirection = TargetPos - transform.position;
             float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, handler.sheepRotationSpeed * Time.deltaTime);
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle + rotateMod));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, (handler.goatRotationSpeed + handler.avoidRotateSpeed) * Time.deltaTime);
         }
 
         // move forward
@@ -87,5 +94,15 @@ public class Sheep : MonoBehaviour
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3 (0, 0, angle + 180);
         scared = true;
+    }
+
+    void AvoidObstacle()
+    {
+        RaycastHit2D closestObst = Physics2D.CircleCast(transform.position, 1, Vector2.right, 0.1f, 3);
+        if (!closestObst) return;
+        float rightDistance = Vector2.Distance(rightNode.position, closestObst.transform.position);
+        float leftDistance = Vector2.Distance(leftNode.position, closestObst.transform.position);
+        if (rightDistance < leftDistance) rotateMod = -handler.avoidRotateSpeed;
+        else rotateMod = handler.avoidRotateSpeed;
     }
 }
