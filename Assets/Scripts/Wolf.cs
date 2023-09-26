@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Wolf : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class Wolf : MonoBehaviour
 
     void Scare()
     {
+        // return if UI was clicked
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, handler.wolfRadius);
         foreach (Collider2D collider in nearby)
         {

@@ -114,4 +114,61 @@ public class Handler : MonoBehaviour
         TMPWolfRadius.text = wolfRadius.ToString();
         TMPAvoidRotateSpeed.text = avoidRotateSpeed.ToString();
     }
+
+    // presets
+
+    public void PresetReset()
+    {
+        sheepSpeed = 1;
+        TMPSheepSpeed.text = "1";
+        goatSpeed = 5;
+        TMPGoatSpeed.text = "5";
+        sheepRotationSpeed = 1;
+        TMPSheepRotationSpeed.text= "1";
+        goatRotationSpeed = 3;
+        TMPGoatRotationSpeed.text = "3";
+        scareDuration = 1;
+        TMPScareDuration.text = "1";
+        scareSpeedModifier = 5;
+        TMPScareSpeedModifier.text = "5";
+        wolfRadius = 2;
+        TMPWolfRadius.text = "2";
+        avoidRotateSpeed = 3;
+        TMPAvoidRotateSpeed.text = "3";
+    }
+    public void PresetMolecules()
+    {
+        sheepSpeed = 5;
+        TMPSheepSpeed.text = "5";
+        goatSpeed = 0;
+        TMPGoatSpeed.text = "0";
+        sheepRotationSpeed = 0;
+        TMPSheepRotationSpeed.text = "0";
+        scareSpeedModifier = 2;
+        TMPScareSpeedModifier.text = "2";
+        avoidRotateSpeed = 50;
+        TMPAvoidRotateSpeed.text = "50";
+    }
+    public void PresetMagnet()
+    {
+        scareDuration = 2;
+        TMPScareDuration.text = "2";
+        scareSpeedModifier = -2;
+        TMPScareSpeedModifier.text = "-2";
+        wolfRadius = 4;
+        TMPWolfRadius.text = "4";
+    }
+    public void PresetOrbit()
+    {
+        sheepSpeed = 20;
+        TMPSheepSpeed.text = "20";
+        goatSpeed = 1;
+        TMPGoatSpeed.text = "1";
+        sheepRotationSpeed = 50;
+        TMPSheepRotationSpeed.text = "50";
+        goatRotationSpeed = 3;
+        TMPGoatRotationSpeed.text = "3";
+        avoidRotateSpeed = 1;
+        TMPAvoidRotateSpeed.text = "1";
+    }
 }
